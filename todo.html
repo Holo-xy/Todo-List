@@ -79,6 +79,12 @@
         border: none;
         border-radius: 20px;
     }
+    .marked
+    {
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+        text-decoration-color: white;
+    }
     .Buttons
     {
         display: flex;
@@ -133,23 +139,25 @@
             let counter = 0;
             for (t of todoArray)
             {   
+                marked = "marked";
+                if (t.marked == false) {marked = ""}
                 document.getElementById("todosContainer").innerHTML += `
                 <div class="todo">
 
                     <div>
-                        <input type="text" value="${t.content}" class="todoText" readonly>
+                        <input id="${counter}" type="text" value="${t.content}" class="todoText ${marked}" readonly>
                     </div>
 
 
                     <div class="Buttons">
 
-                        <button  class="edit"> 
+                        <button  class="edit" onclick="editTodo(${counter})"> 
                         </button>
 
-                        <button class="delete">
+                        <button class="delete" onclick="deleteTodo(${counter})">
                         </button>
 
-                        <button class="mark">
+                        <button class="mark" onclick="markTodo(${counter})">
                         </button>
 
                     </div> 
@@ -174,6 +182,43 @@
             todoArray.push(todo);
             refershLoop();
         }
+
+    function editTodo(index)
+        {
+            if (todoArray[index].marked) {return;}
+            if (todoArray[index].beingEdited) 
+            {
+                todoArray[index].beingEdited = false;
+                todoArray[index].content = document.getElementById(index).value;
+                refershLoop();
+            }
+            else
+            {
+                todoArray[index].beingEdited = true;
+                document.getElementById(index).removeAttribute('readonly');
+                document.getElementById(index).focus();
+            }
+        }
+
+    function deleteTodo(index)
+        {
+            todoArray.splice(index,1);
+            refershLoop();
+        }
+
+    function markTodo(index)
+        {
+            if (todoArray[index].marked)
+            {
+                todoArray[index].marked = false;
+            }
+            else
+            {
+                todoArray[index].marked = true;
+            }
+            refershLoop();
+        }    
+
 
 </script>
 
