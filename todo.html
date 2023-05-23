@@ -64,6 +64,7 @@
         max-width: 600px;
         border-radius: 20px;
         padding-right: 15px;
+        margin: 10px 0px;
     }
     .todoText
     {
@@ -98,12 +99,12 @@
     <!-- HEADER -->
     <div class="header">
             <input id="newTodoInput" placeholder="E.g. study">
-        <button id="addButton">
+        <button id="addButton" onclick="addTodo()">
         </button>
     </div>
     <!-- HEADER -->
 
-    <div class="todosContainer">
+    <div id="todosContainer">
         <div class="todo">
             <div>
                 <input type="text" class="todoText">
@@ -122,4 +123,58 @@
         </div>
     </div>
 </body>
+
+<script>
+    let todoArray = [];
+
+    function refershLoop()
+        {
+            document.getElementById("todosContainer").innerHTML = ""
+            let counter = 0;
+            for (t of todoArray)
+            {   
+                document.getElementById("todosContainer").innerHTML += `
+                <div class="todo">
+
+                    <div>
+                        <input type="text" value="${t.content}" class="todoText" readonly>
+                    </div>
+
+
+                    <div class="Buttons">
+
+                        <button  class="edit"> 
+                        </button>
+
+                        <button class="delete">
+                        </button>
+
+                        <button class="mark">
+                        </button>
+
+                    </div> 
+                </div>     
+            `
+            counter++;
+            }
+        }
+
+
+
+    function addTodo()
+        {
+            let inputText = document.getElementById("newTodoInput").value
+            let todo = 
+            {
+                "content" : inputText,
+                "marked": false,
+                "beingEdited": false
+            } 
+            todo.value = inputText;
+            todoArray.push(todo);
+            refershLoop();
+        }
+
+</script>
+
 </html>
