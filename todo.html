@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <style>
@@ -93,11 +94,18 @@
     }
     .edit,.delete,.mark
     {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: none;
         outline: none;
         width: 30px;
         height: 30px;
         border-radius: 50%;
+    }
+    .material-symbols-outlined
+    {
+        color: #424549;
     }
 </style>
 
@@ -106,27 +114,15 @@
     <div class="header">
             <input id="newTodoInput" placeholder="E.g. study">
         <button id="addButton" onclick="addTodo()">
+            <span class="material-symbols-outlined">
+                add
+            </span> 
         </button>
     </div>
     <!-- HEADER -->
 
     <div id="todosContainer">
-        <div class="todo">
-            <div>
-                <input type="text" class="todoText">
-            </div>
-            <div class="Buttons">
-                
-                <button class="delete">
 
-                </button>
-                <button class="edit">
-                    
-                </button>
-                <button class="mark">
-            
-            </div>
-        </div>
     </div>
 </body>
 
@@ -151,13 +147,22 @@
 
                     <div class="Buttons">
 
-                        <button  class="edit" onclick="editTodo(${counter})"> 
+                        <button  class="edit" onclick="editTodo(${counter})">
+                            <span class="material-symbols-outlined">
+                                edit_note
+                            </span>  
                         </button>
 
                         <button class="delete" onclick="deleteTodo(${counter})">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>    
                         </button>
 
                         <button class="mark" onclick="markTodo(${counter})">
+                            <span class="material-symbols-outlined">
+                                done
+                            </span>
                         </button>
 
                     </div> 
