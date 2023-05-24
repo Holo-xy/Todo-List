@@ -128,7 +128,18 @@
 
 <script>
     let todoArray = [];
-
+// -------- local storage --------
+    function getTodos()
+        {
+            todoArray = JSON.parse(localStorage.getItem("savedTodos")) ?? [];
+            refershLoop();
+        }
+    function saveTodos()
+        {
+            localStorage.setItem("savedTodos",JSON.stringify(todoArray));
+        }
+    getTodos();
+// -------- local storage --------
     function refershLoop()
         {
             document.getElementById("todosContainer").innerHTML = ""
@@ -170,6 +181,7 @@
             `
             counter++;
             }
+            saveTodos();
         }
 
 
@@ -185,6 +197,7 @@
             } 
             todo.value = inputText;
             todoArray.push(todo);
+            saveTodos();
             refershLoop();
         }
 
@@ -223,7 +236,6 @@
             }
             refershLoop();
         }    
-
 
 </script>
 
